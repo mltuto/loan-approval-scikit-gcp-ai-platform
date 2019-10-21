@@ -12,7 +12,12 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import LabelBinarizer
 
 # TODO: REPLACE 'YOUR_BUCKET_NAME' with your GCS Bucket name.
-BUCKET_NAME = 'ml-tuto-fred'
+BUCKET_NAME = 'YOUR_BUCKET_NAME'
+# TODO: REPLACE 'YOUR_PROJECT_ID' with your GCP Project ID.
+PROJECT_ID='YOUR_PROJECT_ID'
+# TODO: REPLACE 'europe-west-1' with your GCP Project region you want to work with if it's not europe west 1.
+REGION="europe-west1"
+
 # [END setup]
 
 # ---------------------------------------
@@ -21,17 +26,13 @@ BUCKET_NAME = 'ml-tuto-fred'
 # ---------------------------------------
 # [START download-data]
 # Public bucket holding the data
-bucket = storage.Client().bucket('ml-tuto-fred')
+bucket = storage.Client().bucket(BUCKET_NAME)
 
 # Path to the data inside the bucket
 blob = bucket.blob('data/loan_approvals.csv')
 # Download the data
 blob.download_to_filename('loan_approvals.csv')
 # [END download-data]
-
-BUCKET_NAME="ml-tuto-fred"
-PROJECT_ID="fmolina-is"
-REGION="europe-west1"
 
 #TODO DL data here from blob to pandas DF
 with open('./loan_approvals.csv', 'r') as train_data:
